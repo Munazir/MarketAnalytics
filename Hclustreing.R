@@ -19,3 +19,11 @@ as.matrix(dist.data)[1:5,1:5]
 #h-clustering
 data.clusters <- hclust(dist.data,method = "ward.D2")
 plot(data.clusters)
+
+#cutting the tree in number of clusters and marking it
+h.clusters <- cutree(data.clusters,k = 4)
+rect.hclust(data.clusters,k = 4,border = 2)
+
+#frequency table of cluster members
+table(h.clusters)
+
