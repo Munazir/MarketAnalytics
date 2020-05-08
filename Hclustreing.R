@@ -34,5 +34,21 @@ h.clusters.summary
 # Appearance driven cluster (checking the members of 3rd cluster)
 plot(cut(as.dendrogram(data.clusters),h=9)$lower[[3]])
 
+# choosing number of clusters based on the Nblcust method has 26 criteria to select optimal number of Clusters
+pkgs <- c("factoextra",  "NbClust")
+install.packages(pkgs)
+
+#importing the libraries
+library(factoextra)
+library(NbClust)
+NbClust(data = scaled.data[,1:5],min.nc = 3,max.nc = 15,index = "all",method = "ward.D2")
+
+#Trying to identify the segments
+install.packages("gmodels")
+library(gmodels)
+CrossTable(segment.data$MBA,h.clusters,prop.r = T,prop.c = T,prop.t = F,prop.chisq = FALSE,chisq = T)
+
+#Comparing the formed driver cluster with the choice available
+CrossTable(h.clusters,segment.data$Choice,prop.r = T,prop.c = T,prop.t = F,prop.chisq = FALSE,chisq = T)
 
      
