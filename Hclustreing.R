@@ -27,3 +27,12 @@ rect.hclust(data.clusters,k = 4,border = 2)
 #frequency table of cluster members
 table(h.clusters)
 
+#cluster summary
+h.clusters.summary <- aggregate(x = scaled.data,by=list(h.clusters),FUN=mean)
+h.clusters.summary
+
+# Appearance driven cluster (checking the members of 3rd cluster)
+plot(cut(as.dendrogram(data.clusters),h=9)$lower[[3]])
+
+
+     
